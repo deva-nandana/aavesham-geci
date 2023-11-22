@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Oxygen', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /*overflow: hidden;*/
+            background-color: #fff;
+            color: #444;
+            font-size: 15px;
+            line-height: 18px;
+            font-weight: 300;
+        }
+
+        #background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/Golden-Sparkle-Burst.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+            margin: 136px 0 42px 0;
+        }
+
+        .sub-heading {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0 16px 0;
+        }
+
+        h1.leader-board {
+            font-size: 2.3em;
+            line-height: 44px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 900;
+            margin: 0;
+            padding: 10px 0 0 30px;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg,#37474f 38.59%,#f6ac69 47.2%,#efcd5d 59.44%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        #content-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #leaderboard-container {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            position: relative;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden; 
+            background-color: #fffee6; 
+        }
+
+        th {
+            padding: 32px 60px 32px 60px;
+            text-align: center;
+            position: relative;
+            border: 2px solid #efcd5d;
+        } 
+        
+        td {
+            padding: 22px 54px 22px 54px;
+            text-align: center;
+            position: relative;
+        }
+
+        tr:hover {
+            background-color: #f0efeb;
+            color: #0a0908;
+        }
+
+        th {
+            color: #fff;
+            background-color: #efcd5d;
+            font-size: 18px;
+        }
+
+        .first-color {
+          background-color: #fff;
+        }
+
+        .second-color {
+          background-color: #f9f9f7;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #efcd5d;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #fff;
+        }
+       
+        .toggle-button {
+            padding: 10px;
+            background: linear-gradient(90deg,#37474f 38.59%,#f6ac69 47.2%,#efcd5d 59.44%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn-align {
+            text-align: right;
+            padding-bottom: 6rem;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
+
+        .button {
+            font-size: 16px;
+            text-align: center;
+            color: white;
+            padding: 14px 46px 14px 46px;
+            margin: 33px 0 0 0;
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #efcd5d 0%, #ff9500 50%, #efcd5d 100%);
+            transition-duration: 0.4s;
+            transition: 0.5s;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .college-name {
+            display: flex;
+            justify-content: center;
+            line-height: 1;
+            font-size: 36px;
+            background: linear-gradient(90deg,#37474f 38.59%,#f6ac69 47.2%,#efcd5d 59.44%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .button:hover {
+            color: white;
+            background-position: right center;
+        }
+        @media only screen and (max-width: 768px) {   
+    .heading {
+        margin: 50px 0 20px 0;
+    }
+
+    .sub-heading {
+        margin: 0 0 10px 0;
+    }
+
+    h1.leader-board {
+        font-size: 28px;
+        line-height: 36px;
+        padding: 10px 0 0 15px;
+        background: linear-gradient(90deg,#37474f -2.41%,#f6ac69 47.2%,#efcd5d 59.44%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    th, td {
+        padding: 18px 12px;
+    }
+
+    .toggle-button {
+        padding: 8px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 12px 30px;
+    }
+
+    .btn-align {
+        text-align: center;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .avesham-img {
+        width: 90%;
+    }
+
+    .fest-img {
+        width: 78%;
+    }
+}
+
+@media only screen and (max-width: 500px) {   
+
+    .heading {
+        margin: 50px 0 20px 0;
+    }
+
+    .sub-heading {
+        margin: 0 0 10px 0;
+    }
+
+    h1.leader-board {
+        font-size: 22px;
+        line-height: 36px;
+        padding: 10px 0 0 15px;
+        background: linear-gradient(90deg,#37474f -2.41%,#f6ac69 47.2%,#efcd5d 59.44%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 18px 12px;
+    }
+
+    .toggle-button {
+        padding: 8px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 12px 30px;
+    }
+
+    .btn-align {
+        text-align: center;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .avesham-img {
+        width: 84%;
+    }
+
+    .fest-img {
+        width: 68%;
+    }
+
+}
+    </style>
+</head>
+<body>
+    <div id="background-container"></div>
+    <div class="heading">
+        <img class="avesham-img" src="images/AAVESHAM-23.png">
+    </div>
+    <div class="college-name">GEC - IDUKKI</div>
+    <div class="sub-heading">
+        <img class="fest-img" src="images/INTER-DEPARTMENT-FRESHERS-FEST.png" alt="inter department freshers fest">
+    </div>
+    <h1 class="leader-board">Leader board</h1>
+
+    <div id="content-container">
+        <div id="leaderboard-container">
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>RANKING</th>
+                        <th>DEPARTMENT</th>
+                        <th>POINTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="first-color">
+                        <td>1</td>
+                        <td>ELECTRONICS AND COMMUNICATION</td>
+                        <td>35</td>
+                    </tr>
+                    <tr class="second-color">
+                        <td>2</td>
+                        <td>ELECTRICAL AND ELECTRONICS</td>
+                        <td>23</td>
+                    </tr>
+                    <tr class="first-color">
+                        <td>3</td>
+                        <td>COMPUTER SCIENCE</td>
+                        <td>13</td>
+                    </tr>
+                    <tr class="second-color">
+                        <td>4</td>
+                        <td>INFORMATION TECHNOLOGY</td>
+                        <td>11</td>
+                    </tr>
+                    <tr class="first-color">
+                        <td>5</td>
+                        <td>MECHANICAL</td>
+                        <td>3</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+
+            <table id="events-table" class="hidden">
+                <thead>
+                    <tr>
+                        <th>EVENTS</th>
+                        <th>RANKING</th>
+                        <th>WINNERS</th>
+                        <th>DEPARTMENT</th>
+                        <th>POINTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="first-color">
+                        <td>FILM THREAD</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>SREELEKSHMI<br><br>RAHEES<br><br>SMEDHA & ABEL MATHEW</td>
+                        <td>ECE<br><br>ECE<br><br>EEE & IT</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+                    
+                    <tr class="second-color">
+                        <td>PENCIL DRAWING</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>AMARNATH SIVA<br><br>KARTHIK<br><br>VISHNU KP</td>
+                        <td>ECE<br><br>ECE<br><br>MECH</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+
+                    <tr class="first-color">
+                        <td>CAPTION THIS</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>TIYANA & PRANAV<br><br>SAFAAN<br><br>ABHISHEK V</td>
+                        <td>CSE & EEE<br><br>ECE<br><br>IT</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+                    
+                    <tr class="second-color">
+                        <td>PES</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>ADITHYAN VS<br><br>PRANAV<br><br>NITHIN</td>
+                        <td>EEE<br><br>IT<br><br>CS</td>
+                        <td>220<br><br>5<br><br>3</td>
+                    </tr>
+                      <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+            <table id="events-table2" class="hidden">
+                <thead>
+                    <tr>
+                        <th>EVENTS</th>
+                        <th>RANKING</th>
+                        <th>WINNERS</th>
+                        <th>DEPARTMENT</th>
+                        <th>POINTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="first-color">
+                        <td>DIGITAL PAINTING</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>ALAN<br><br>AMARNATH SHIVA & JIS ANTONY<br><br>NAVYA RAJ</td>
+                        <td>MECH<br><br>ECE & MECH<br><br>CS</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+                    
+                    <tr class="second-color">
+                        <td>PENCIL DRAWING</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>AMARNATH SIVA<br><br>KARTHIK<br><br>VISHNU KP</td>
+                        <td>ECE<br><br>ECE<br><br>MECH</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+
+                    <tr class="first-color">
+                        <td>POSSTER DESIGNING</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>ALAN<br><br>EDWIN<br><br>ARJUN C.G</td>
+                        <td>MECH<br><br>ECE<br><br>EC</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+                    
+                    <tr class="second-color">
+                        <td>JUGGLE</td>
+                        <td>FIRST<br><br>SECOND<br><br>THIRD</td>
+                        <td>SOORAJ<br><br>VIGNESH<br><br>ABDULLA IBNU ASHRAF</td>
+                        <td>IT<br><br>EC<br><br>MECH</td>
+                        <td>10<br><br>5<br><br>3</td>
+                    </tr>
+            </table>
+        </div>
+        <<div class="btn-align">
+            <button class="toggle-button button" onclick="toggleTables(0)">RESULT</button>
+            <button class="toggle-button button" onclick="toggleTables(1)">DAY 1</button>
+            <button class="toggle-button button" onclick="toggleTables(2)">DAY 2</button>
+        </div>
+        </div>
+        
+        <script>
+            function toggleTables(day) {
+                var leaderboardTable = document.getElementById("leaderboard-table");
+                var eventsTable1 = document.getElementById("events-table");
+                var eventsTable2 = document.getElementById("events-table2");
+        
+                if (day === 1) {
+                    leaderboardTable.classList.add("hidden");
+                    eventsTable1.classList.remove("hidden");
+                    eventsTable2.classList.add("hidden");
+                } else if (day === 2) {
+                    leaderboardTable.classList.add("hidden");
+                    eventsTable1.classList.add("hidden");
+                    eventsTable2.classList.remove("hidden");
+                }
+            }
+        </script>
+        
+        
+</body>
+</html>
